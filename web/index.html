@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数字炸弹</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="home">
+    <h1>数字炸弹</h1>
+    <section class="rules">
+      <p>第一行会显示当前炸弹范围</p>
+      <p>数字大了就往小调，小了就往大调</p>
+      <p>超出范围的输入无效，必须重新输入</p>
+      <p>猜中隐藏数字就会爆炸</p>
+    </section>
+    <button id="enter-game" class="btn btn-gold" type="button">进入游戏</button>
+  </main>
+
+  <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="game-title">
+    <section class="game-window">
+      <h2 id="game-title">拆除数字炸弹</h2>
+      <p id="range-line" class="range-line">数字炸弹范围：0  ~  100</p>
+      <p id="hint-line" class="hint hint-normal">在范围内输入一个整数，点确认拆弹。</p>
+
+      <form id="guess-form" class="guess-row">
+        <input id="guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="输入整数">
+        <button id="confirm-btn" class="btn btn-gold" type="submit">确认</button>
+      </form>
+
+      <pre id="log" class="log"></pre>
+
+      <div class="actions">
+        <button id="restart-btn" class="btn btn-green" type="button">再来一局</button>
+        <button id="close-btn" class="btn btn-gray" type="button">关闭窗口</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

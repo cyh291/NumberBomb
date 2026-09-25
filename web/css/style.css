@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  background: #12101c;
+  color: #e6e0f5;
+}
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  gap: 24px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 40px;
+  color: #e85d3a;
+}
+
+.rules {
+  width: min(420px, 100%);
+  background: #242034;
+  border-radius: 12px;
+  padding: 20px 18px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.rules p {
+  margin: 0;
+}
+
+.btn {
+  border: 2px solid #111;
+  border-radius: 8px;
+  color: #111;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px 24px;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-gold {
+  background: #ffc107;
+}
+
+.btn-green {
+  background: #81c784;
+}
+
+.btn-gray {
+  background: #bdbdbd;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.game-window {
+  width: min(520px, 100%);
+  background: #1c1212;
+  color: #ffecdc;
+  border-radius: 14px;
+  padding: 22px 20px 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.game-window h2 {
+  margin: 0 0 10px;
+  text-align: center;
+  color: #e85d3a;
+  font-size: 26px;
+}
+
+.range-line {
+  margin: 0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.hint {
+  margin: 8px 0 14px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.hint-normal { color: #ffd2aa; }
+.hint-invalid { color: #ffc45a; }
+.hint-high { color: #ff8c5a; }
+.hint-low { color: #78c8ff; }
+.hint-boom { color: #e85d3a; }
+
+.guess-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+#guess-input {
+  flex: 1;
+  min-width: 0;
+  background: #301a1a;
+  color: #ffecdc;
+  border: 2px solid #e85d3a;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 20px;
+}
+
+.log {
+  height: 220px;
+  overflow: auto;
+  background: #301a1a;
+  border: 1px solid #5a2d28;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 0 0 14px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #ffecdc;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
