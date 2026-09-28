@@ -16,6 +16,11 @@
       <p>猜中隐藏数字就会爆炸</p>
     </section>
     <button id="enter-game" class="btn btn-gold" type="button">进入游戏</button>
+    <button id="login-btn" class="btn btn-gray" type="button">登录</button>
+    <button id="register-btn" class="btn btn-gray" type="button">注册</button>
+
+
+
   </main>
 
   <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="game-title">
@@ -40,5 +45,24 @@
 
   <script src="web/js/engine.js"></script>
   <script src="web/js/app.js"></script>
+<script src="web/js/auth.js"></script>
+
+<div id="auth-overlay" class="overlay hidden">
+  <section class="game-window" style="width: min(380px, 100%);">
+    <h2 id="auth-title">登录</h2>
+    <form id="auth-form" style="display: flex; flex-direction: column; gap: 12px;">
+      <input id="auth-username" type="text" placeholder="用户名" style="padding: 10px; font-size: 16px; border-radius: 6px; border: 1px solid #ccc;">
+      <input id="auth-password" type="password" placeholder="密码" style="padding: 10px; font-size: 16px; border-radius: 6px; border: 1px solid #ccc;">
+      <button type="submit" class="btn btn-gold">确定</button>
+    </form>
+    <div style="text-align: center; margin-top: 10px;">
+      <button id="auth-switch" class="btn btn-gray" style="font-size: 14px;">没有账号？去注册</button>
+    </div>
+    <p id="auth-message" style="text-align: center; margin-top: 10px;"></p>
+  </section>
+</div>
+
+
+
 </body>
 </html>
