@@ -16,6 +16,8 @@ import java.awt.GridLayout;
  * 启动界面：点击按钮弹出游戏窗口。
  */
 public class StartMenuFrame extends JFrame {
+    private final JLabel userLabel = new JLabel("未登录", SwingConstants.CENTER);
+
     public StartMenuFrame() {
         super("数字炸弹");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -51,6 +53,29 @@ public class StartMenuFrame extends JFrame {
         rules.setBackground(card);
         rules.setBorder(BorderFactory.createEmptyBorder(18, 16, 18, 16));
 
+        userLabel.setFont(new Font("Microsoft YaHei", Font.BOLD, 15));
+        userLabel.setForeground(new Color(255, 214, 102));
+        userLabel.setOpaque(true);
+        userLabel.setBackground(card);
+        userLabel.setBorder(BorderFactory.createEmptyBorder(10, 12, 10, 12));
+
+        JButton authButton = new JButton("登录 / 注册");
+        styleActionButton(authButton, new Color(100, 181, 246));
+        authButton.addActionListener(e -> openAuthDialog());
+
+        JButton logoutButton = new JButton("退出登录");
+        styleActionButton(logoutButton, new Color(189, 189, 189));
+        logoutButton.addActionListener(e -> {
+            AuthSession.logout();
+            refreshUserStatus();
+        });
+
+        JPanel statusPanel = new JPanel(new GridLayout(1, 3, 10, 0));
+        statusPanel.setOpaque(false);
+        statusPanel.add(userLabel);
+        statusPanel.add(authButton);
+        statusPanel.add(logoutButton);
+
         JButton startButton = new JButton("进入游戏");
         startButton.setUI(new BasicButtonUI());
         startButton.setOpaque(true);
@@ -66,6 +91,12 @@ public class StartMenuFrame extends JFrame {
                 BorderFactory.createEmptyBorder(10, 24, 10, 24)
         ));
         startButton.addActionListener(e -> {
+            if (!AuthSession.isLoggedIn()) {
+                openAuthDialog();
+                if (!AuthSession.isLoggedIn()) {
+                    return;
+                }
+            }
             GameDialog dialog = new GameDialog(this);
             dialog.setVisible(true);
         });
@@ -74,12 +105,47 @@ public class StartMenuFrame extends JFrame {
         buttonWrap.setOpaque(false);
         buttonWrap.add(startButton);
 
-        JPanel center = new JPanel(new GridLayout(2, 1, 0, 16));
+        JPanel center = new JPanel(new GridLayout(3, 1, 0, 16));
         center.setOpaque(false);
         center.add(rules);
+        center.add(statusPanel);
         center.add(buttonWrap);
 
         root.add(title, BorderLayout.NORTH);
         root.add(center, BorderLayout.CENTER);
+
+        refreshUserStatus();
+    }
+
+    private void refreshUserStatus() {
+        String currentUser = AuthSession.getCurrentUser();
+        if (currentUser == null || currentUser.trim().isEmpty()) {
+            userLabel.setText("未登录");
+            userLabel.setForeground(new Color(255, 214, 102));
+        } else {
+            userLabel.setText("当前用户：" + currentUser);
+            userLabel.setForeground(new Color(120, 230, 160));
+        }
+    }
+
+    private void openAuthDialog() {
+        AuthDialog dialog = new AuthDialog(this);
+        dialog.setVisible(true);
+        refreshUserStatus();
+    }
+
+    private void styleActionButton(JButton button, Color background) {
+        button.setUI(new BasicButtonUI());
+        button.setOpaque(true);
+        button.setContentAreaFilled(true);
+        button.setFont(new Font("Microsoft YaHei", Font.BOLD, 14));
+        button.setBackground(background);
+        button.setForeground(Color.BLACK);
+        button.setFocusPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        button.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.BLACK, 1),
+                BorderFactory.createEmptyBorder(8, 10, 8, 10)
+        ));
     }
 }
