@@ -1,6 +1,6 @@
-// ======== 注册登录逻辑（独立文件，不影响游戏） ========
-const AUTH_API = 'https://你的后端网址.onrender.com'; // 换成你 Render Web Service 的地址
 
+const AUTH_API = 'https://numberbomb-7.onrender.com'; // 换成你 Render Web Service 的地址
+//
 const authOverlay = document.getElementById('auth-overlay');
 const authTitle = document.getElementById('auth-title');
 const authForm = document.getElementById('auth-form');
